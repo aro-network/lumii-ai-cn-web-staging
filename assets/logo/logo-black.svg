@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 64" fill="none">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Manrope:wght@800&amp;display=swap');
+      .wordmark { font-family: 'Manrope', sans-serif; font-weight: 800; letter-spacing: -0.03em; }
+    </style>
+  </defs>
+  <!-- Mark scaled to 48x48, vertically centered in 64px -->
+  <g transform="translate(0, 8) scale(0.48)">
+    <path d="M0 0H28V72H100V100H0V0Z" fill="#191c1e"/>
+    <rect x="62" y="10" width="18" height="18" fill="#191c1e"/>
+  </g>
+  <!-- Wordmark -->
+  <text x="60" y="42" class="wordmark" font-size="28" fill="#191c1e">Lumii AI</text>
+</svg>
