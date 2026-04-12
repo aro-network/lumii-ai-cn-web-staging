@@ -1,4 +1,4 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
-  <path d="M14 0H18Q25 0 25 7V71Q25 78 32 78H89Q96 78 96 85V89Q96 96 89 96H14Q7 96 7 89V7Q7 0 14 0Z" fill="#ffffff"/>
-  <circle cx="64" cy="17" r="12" fill="#ffffff"/>
+  <path d="M36 4L66 36L36 88L6 36Z" fill="#ffffff" opacity="0.55"/>
+  <path d="M64 12L94 44L64 96L34 44Z" fill="#ffffff"/>
 </svg>
