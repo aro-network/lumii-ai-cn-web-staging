@@ -1,0 +1,653 @@
+<!DOCTYPE html>
+<html lang="zh-CN" class="light">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>产品详情 — Lumii AI</title>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<style>
+  /* 架构图专用样式 */
+  .arch-diagram {
+    font-family: 'Manrope', 'SF Mono', monospace;
+    background: #0f1117;
+    border-radius: 1rem;
+    padding: 1.5rem;
+    overflow-x: auto;
+  }
+  .arch-diagram pre {
+    color: #e2e8f0;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    white-space: pre;
+    margin: 0;
+  }
+  .arch-node-blue { color: #60a5fa; font-weight: 700; }
+  .arch-node-purple { color: #c084fc; font-weight: 700; }
+  .arch-node-green { color: #34d399; font-weight: 700; }
+  .arch-node-yellow { color: #fbbf24; font-weight: 700; }
+  .arch-node-gray { color: #94a3b8; }
+  .arch-arrow { color: #475569; }
+  .arch-label { color: #64748b; font-style: italic; }
+
+  /* 对比表 */
+  .compare-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; padding: 0.75rem 1rem; }
+  .compare-table td { font-size: 0.875rem; vertical-align: top; padding: 0.75rem 1rem; }
+  .compare-table tr:not(:last-child) td { border-bottom: 1px solid rgba(115,118,133,0.1); }
+</style>
+  <script type="module" crossorigin src="/assets/main-Lf692reH.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/main-CG5JSISn.css">
+</head>
+<body class="bg-surface text-on-surface font-body overflow-x-hidden selection:bg-primary-fixed selection:text-on-primary-fixed">
+
+<!-- 导航栏 -->
+<nav class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl">
+  <div class="flex justify-between items-center max-w-7xl mx-auto px-6 h-16">
+    <a href="/" class="flex items-center gap-2.5">
+      <img src="/assets/logo/mark-color.svg" alt="" class="h-7 w-auto" />
+      <span class="text-xl font-extrabold text-on-surface tracking-tight" style="letter-spacing:-0.03em">Lumii AI</span>
+    </a>
+    <div class="hidden md:flex items-center space-x-8 text-sm font-medium tracking-tight">
+      <div class="nav-dropdown">
+        <a class="text-slate-600 hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1" href="#">产品 <span class="material-symbols-outlined text-base">expand_more</span></a>
+        <div class="nav-dropdown-menu">
+          <ul>
+            <li><a href="/products.html">Lumii Agent</a></li>
+            <li><a href="/products.html#coding">Lumii Coding Agent</a></li>
+            <li><a href="/products.html#token">Token API</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="nav-dropdown">
+        <a class="text-slate-600 hover:text-blue-600 transition-colors cursor-pointer flex items-center gap-1" href="#">解决方案 <span class="material-symbols-outlined text-base">expand_more</span></a>
+        <div class="nav-dropdown-menu">
+          <ul>
+            <li><a href="/products.html#coding">AI 编程</a></li>
+            <li><a href="#">研发效能</a></li>
+            <li><a href="#">IT 运维</a></li>
+            <li><a href="#">成本优化</a></li>
+          </ul>
+        </div>
+      </div>
+      <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#">定价</a>
+      <a class="text-slate-600 hover:text-blue-600 transition-colors" href="#">文档</a>
+    </div>
+    <div class="hidden md:flex items-center space-x-4">
+      <button class="text-slate-600 hover:text-blue-600 text-sm font-medium">登录</button>
+      <button data-cta="get-started" class="bg-primary-container text-white px-5 py-2 rounded-full text-sm font-semibold hover:scale-105 active:scale-95 transition-transform duration-200">开始使用</button>
+    </div>
+    <button class="md:hidden" data-mobile-menu-toggle>
+      <span class="material-symbols-outlined text-2xl">menu</span>
+    </button>
+  </div>
+  <div id="mobile-menu" class="mobile-menu flex-col bg-white/95 backdrop-blur-xl px-6 pb-6 md:hidden">
+    <a class="py-3 text-sm font-medium text-slate-600 border-b border-slate-100" href="/">首页</a>
+    <a class="py-3 text-sm font-medium text-slate-600 border-b border-slate-100" href="#">定价</a>
+    <a class="py-3 text-sm font-medium text-slate-600 border-b border-slate-100" href="#">文档</a>
+    <button data-cta="get-started" class="mt-4 w-full bg-primary-container text-white py-3 rounded-full text-sm font-semibold">开始使用</button>
+  </div>
+</nav>
+
+<main>
+
+<!-- Hero -->
+<section class="min-h-[40vh] flex items-center pt-16 mesh-gradient-bg">
+  <div class="max-w-5xl mx-auto px-6 py-20 text-center">
+    <span class="inline-block py-1 px-3 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] uppercase tracking-widest font-bold mb-6">产品详情</span>
+    <h1 class="text-5xl lg:text-6xl font-extrabold tracking-tight text-on-surface leading-tight mb-6">
+      Lumii Agent<br/>
+      <span class="text-primary-container">AI 员工直接上岗，结果可追溯</span>
+    </h1>
+    <p class="text-xl text-on-surface-variant max-w-2xl mx-auto">
+      受控、安全、持续最优——AI 员工交付可见结果，全程在您掌控中
+    </p>
+  </div>
+</section>
+
+<!-- 页内锚点导航 -->
+<div class="sticky top-16 z-40 bg-white/80 backdrop-blur-md border-b border-outline-variant/20">
+  <div class="max-w-5xl mx-auto px-6">
+    <nav class="flex gap-6 overflow-x-auto py-3 text-sm font-medium scrollbar-none">
+      <a href="#overview" class="text-primary whitespace-nowrap flex-shrink-0">整体架构</a>
+      <a href="#coding" class="text-slate-500 hover:text-primary whitespace-nowrap flex-shrink-0 transition-colors">Lumii Coding Agent</a>
+      <a href="#token" class="text-slate-500 hover:text-primary whitespace-nowrap flex-shrink-0 transition-colors">Token API</a>
+      <a href="#compare" class="text-slate-500 hover:text-primary whitespace-nowrap flex-shrink-0 transition-colors">为什么不直接买 Token</a>
+      <a href="#pricing" class="text-slate-500 hover:text-primary whitespace-nowrap flex-shrink-0 transition-colors">定价</a>
+    </nav>
+  </div>
+</div>
+
+<!-- 整体架构 -->
+<section id="overview" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-extrabold mb-4">整体架构</h2>
+    <p class="text-on-surface-variant mb-12 max-w-2xl">Lumii 的两层产品共享同一套安全基础设施——Lumii Agent 是完整的 AI 员工交付层，Token API 是底层燃料层，服务于有自研工作流需求的团队。</p>
+
+    <!-- 架构图 -->
+    <div class="bg-slate-800 rounded-2xl p-6 mb-12 overflow-x-auto">
+      <div class="flex gap-2 mb-6">
+        <div class="w-3 h-3 rounded-full bg-red-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-amber-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0"></div>
+        <span class="text-slate-500 text-xs ml-1 font-mono">lumii-architecture</span>
+      </div>
+      <div class="min-w-[480px]">
+        <div class="border border-emerald-600/70 rounded-xl p-4 bg-emerald-800/40">
+          <div class="text-emerald-500 text-[10px] font-mono font-bold uppercase tracking-widest mb-3">Customer Workspace</div>
+          <div class="flex gap-2">
+            <div class="flex-1 border border-emerald-500/60 bg-emerald-900/20 rounded-lg px-3 py-2 text-center">
+              <div class="text-emerald-300 text-xs font-mono font-medium">飞书 / 企微</div>
+            </div>
+            <div class="flex-1 border border-emerald-500/60 bg-emerald-900/20 rounded-lg px-3 py-2 text-center">
+              <div class="text-emerald-300 text-xs font-mono font-medium">代码仓库 / Docs</div>
+            </div>
+            <div class="flex-1 border border-emerald-500/60 bg-emerald-900/20 rounded-lg px-3 py-2 text-center">
+              <div class="text-emerald-300 text-xs font-mono font-medium">内部 API / 内网</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 py-2 pl-6">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-2 bg-blue-500/60"></div>
+            <div class="text-blue-400 text-xs leading-none">⇕</div>
+            <div class="w-px h-2 bg-blue-500/60"></div>
+          </div>
+          <span class="text-blue-400 text-xs font-mono font-bold">Zero-Trust Mesh (Tailscale / Connector)</span>
+        </div>
+        <div class="border border-purple-500/60 rounded-xl p-4 bg-purple-800/30">
+          <div class="text-purple-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-3">Lumii Agent Runtime</div>
+          <div class="grid grid-cols-2 gap-2 mb-2">
+            <div class="border border-purple-500/60 bg-purple-900/20 rounded-lg p-3">
+              <div class="text-purple-300 text-xs font-mono font-bold mb-1">Best Practice Engine</div>
+              <div class="text-purple-300 text-[10px] font-mono">持续更新，始终最优</div>
+            </div>
+            <div class="border border-yellow-500/50 bg-yellow-800/30 rounded-lg p-3">
+              <div class="text-yellow-300 text-xs font-mono font-bold mb-1">Harness Layer</div>
+              <div class="text-slate-200 text-[10px] font-mono">权限边界 · 审计日志 · 人工审批</div>
+            </div>
+          </div>
+          <div class="text-slate-300 text-[10px] font-mono pl-1">← 安全访问内网资源 →</div>
+        </div>
+        <div class="flex justify-center py-2">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-slate-600"></div>
+            <div class="text-slate-400 text-xs">▼</div>
+          </div>
+        </div>
+        <div class="border border-yellow-500/60 rounded-xl p-4 bg-yellow-800/30">
+          <div class="text-yellow-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-3">Lumii Router — Token Layer</div>
+          <div class="flex flex-wrap gap-2">
+            <span class="bg-slate-600 text-slate-100 text-[10px] font-mono px-2 py-1 rounded">智能路由</span>
+            <span class="bg-slate-600 text-slate-100 text-[10px] font-mono px-2 py-1 rounded">成本优化</span>
+            <span class="bg-slate-600 text-slate-100 text-[10px] font-mono px-2 py-1 rounded">合规通道</span>
+            <span class="bg-slate-600 text-slate-100 text-[10px] font-mono px-2 py-1 rounded">响应头验证</span>
+          </div>
+        </div>
+        <div class="flex justify-center py-2">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-slate-600"></div>
+            <div class="text-slate-400 text-xs">▼</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3">
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">Claude / GPT-4</div>
+            <div class="text-emerald-400 text-[10px] font-mono">官方直连，满血版</div>
+          </div>
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3">
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">lumii-auto（路由）</div>
+            <div class="text-emerald-400 text-[10px] font-mono">成本优化 50–70%</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 两层说明 -->
+    <div class="grid md:grid-cols-2 gap-8">
+      <div class="glass-card rounded-2xl p-8 kinetic-shadow">
+        <div class="w-10 h-10 bg-tertiary rounded-xl flex items-center justify-center text-white mb-4">
+          <span class="material-symbols-outlined">smart_toy</span>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Lumii Agent 层</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">完整的 AI 员工交付层。每个 Agent 运行在受控沙箱中，通过 Zero-Trust Mesh 安全访问企业内网，配备 Best Practice Engine 持续维护最优配置。只需提交任务，结果直接交付。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-8 kinetic-shadow">
+        <div class="w-10 h-10 bg-primary-container rounded-xl flex items-center justify-center text-white mb-4">
+          <span class="material-symbols-outlined">bolt</span>
+        </div>
+        <h3 class="text-lg font-bold mb-2">Token 燃料层</h3>
+        <p class="text-sm text-on-surface-variant leading-relaxed">底层 AI 模型访问层。如果团队有自研 AI 工作流需要直接调用模型，Token API 提供合规、可验证、智能路由的大模型访问——也是 Lumii Agent 的底层燃料来源。</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Lumii Coding Agent 详情 -->
+<section id="coding" class="py-24 px-6 tonal-recessed">
+  <div class="max-w-5xl mx-auto">
+    <div class="flex items-center gap-3 mb-4">
+      <span class="inline-block bg-tertiary text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-wider">旗舰产品</span>
+      <span class="text-sm text-on-surface-variant">Lumii Agent 系列</span>
+    </div>
+    <h2 class="text-3xl font-extrabold mb-4">Lumii Coding Agent — Harness Engineering 驾驭</h2>
+    <p class="text-on-surface-variant mb-12 max-w-2xl">不是给个人补全代码的工具，是给团队的 Managed Remote Dev Box——<span class="font-semibold text-on-surface">Harness Engineering 持续驾驭</span>，确保每个 AI 开发工作流始终跑在最优、安全、可审计的轨道上。</p>
+
+    <!-- Lumii Coding Agent 架构图 -->
+    <div class="bg-slate-800 rounded-2xl p-6 mb-12 overflow-x-auto">
+      <div class="flex gap-2 mb-6">
+        <div class="w-3 h-3 rounded-full bg-red-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-amber-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0"></div>
+        <span class="text-slate-500 text-xs ml-1 font-mono">coding-agent-architecture</span>
+      </div>
+      <div class="min-w-[520px]">
+        <div class="flex justify-center">
+          <div class="border border-slate-400/70 bg-slate-600/50 rounded-lg px-4 py-2 text-center">
+            <div class="text-slate-300 text-xs font-mono font-bold">Developer / PM 发起任务</div>
+            <div class="text-slate-500 text-[10px] font-mono">飞书 / 企微 / CLI</div>
+          </div>
+        </div>
+        <div class="flex justify-center py-2">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-slate-600"></div>
+            <div class="text-slate-400 text-xs">▼</div>
+          </div>
+        </div>
+        <div class="border border-purple-500/60 rounded-xl p-4 bg-purple-800/30">
+          <div class="text-purple-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-3">Lumii Coding Agent</div>
+          <div class="grid grid-cols-2 gap-2 mb-2">
+            <div class="border border-purple-500/60 bg-purple-900/20 rounded-lg p-3">
+              <div class="text-purple-300 text-xs font-mono font-bold mb-2">Best Engineering Stack</div>
+              <ul class="space-y-1">
+                <li class="text-emerald-400 text-[10px] font-mono">• 最优 coding model</li>
+                <li class="text-emerald-400 text-[10px] font-mono">• 最优 tool calls</li>
+                <li class="text-emerald-400 text-[10px] font-mono">• 最优 context window</li>
+                <li class="text-emerald-400 text-[10px] font-mono">• 持续跟进最新实践</li>
+              </ul>
+            </div>
+            <div class="border border-yellow-500/50 bg-yellow-800/30 rounded-lg p-3">
+              <div class="text-yellow-300 text-xs font-mono font-bold mb-2">Harness Controls</div>
+              <ul class="space-y-1">
+                <li class="text-yellow-400 text-[10px] font-mono">✓ 受限 Git 权限</li>
+                <li class="text-yellow-400 text-[10px] font-mono">✓ 不可覆盖 main branch</li>
+                <li class="text-yellow-400 text-[10px] font-mono">✓ 操作全量审计日志</li>
+                <li class="text-yellow-400 text-[10px] font-mono">✓ 敏感操作需人工审批</li>
+              </ul>
+            </div>
+          </div>
+          <div class="border border-blue-500/50 bg-blue-800/30 rounded-lg p-3">
+            <div class="text-blue-300 text-xs font-mono font-bold mb-1">Managed Remote Dev Box（隔离沙箱）</div>
+            <div class="flex flex-wrap gap-3 text-slate-200 text-[10px] font-mono">
+              <span>独立文件系统</span>
+              <span class="text-slate-400">·</span>
+              <span>独立环境变量</span>
+              <span class="text-slate-400">·</span>
+              <span>独立网络策略</span>
+            </div>
+          </div>
+        </div>
+        <div class="flex items-center gap-3 py-2 pl-6">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-blue-500/60"></div>
+            <div class="text-blue-400 text-xs leading-none">▼</div>
+          </div>
+          <span class="text-blue-400 text-xs font-mono font-bold">Zero-Trust Mesh (Tailscale)</span>
+        </div>
+        <div class="grid grid-cols-3 gap-2">
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3 text-center">
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">代码仓库（Git）</div>
+            <div class="text-emerald-400 text-[10px] font-mono">PR 自动提交</div>
+          </div>
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3 text-center">
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">内部文档</div>
+            <div class="text-emerald-400 text-[10px] font-mono">Docs 自动更新</div>
+          </div>
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3 text-center">
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">企业 CI/CD</div>
+            <div class="text-emerald-400 text-[10px] font-mono">Pipeline 触发</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 特性卡片 -->
+    <div class="grid md:grid-cols-2 gap-6 mb-12">
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-tertiary text-2xl mb-3 block">terminal</span>
+        <h4 class="font-bold mb-2">Managed Remote Dev Box</h4>
+        <p class="text-sm text-on-surface-variant">每个 Lumii Coding Agent 运行在完全隔离的远程沙箱中。通过 Tailscale mesh 安全接入企业内网，拥有独立文件系统、独立环境变量、独立网络策略——Agent 的操作不会影响其他系统。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-tertiary text-2xl mb-3 block">auto_awesome</span>
+        <h4 class="font-bold mb-2">Harness Engineering 驾驭：始终最优</h4>
+        <p class="text-sm text-on-surface-variant">Lumii 持续跟进 agentic coding 领域的最优实践——最优模型选择、最优 tool call 策略、最优 context 管理。每个 Agent 都被 Harness Engineering 驾驭在最优轨道上，无需团队自行摆弄 prompt。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-tertiary text-2xl mb-3 block">shield_lock</span>
+        <h4 class="font-bold mb-2">受控操作，不越权执行</h4>
+        <p class="text-sm text-on-surface-variant">Harness 层限制了 Agent 的操作边界：不能覆盖 main 分支、不能访问未授权资源、敏感操作（如生产部署）触发人工审批，管理层与开发团队均可放心使用。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-tertiary text-2xl mb-3 block">task_alt</span>
+        <h4 class="font-bold mb-2">完整 Dev Workflow</h4>
+        <p class="text-sm text-on-surface-variant">覆盖完整开发流程：理解需求 → 实现代码 → 编写测试 → 提交 PR → 生成文档，全流程交付可见结果，与现有 Git + CI/CD 体系直接集成。</p>
+      </div>
+    </div>
+
+    <!-- 与个人 Coding Plan 的对比 -->
+    <div class="glass-card rounded-2xl p-8 kinetic-shadow">
+      <h3 class="text-lg font-bold mb-6">为什么不直接买个人 Coding 订阅？</h3>
+      <div class="overflow-x-auto">
+        <table class="compare-table w-full">
+          <thead>
+            <tr class="border-b border-outline-variant/20">
+              <th class="text-left py-3 pr-4 text-on-surface-variant w-1/5">对比维度</th>
+              <th class="text-left py-3 pr-4 text-on-surface-variant w-2/5">个人 Coding 订阅</th>
+              <th class="text-left py-3 text-tertiary w-2/5">Lumii Coding Agent</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">设计目标</td>
+              <td class="pr-4 py-3">主要为个人开发者设计</td>
+              <td class="text-on-surface py-3 font-medium">团队级大规模自动化场景</td>
+            </tr>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">使用场景</td>
+              <td class="pr-4 py-3">主要是 inline 代码补全，场景窄</td>
+              <td class="text-on-surface py-3 font-medium">完整 dev workflow，CI/CD 集成，批量任务</td>
+            </tr>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">模型选择</td>
+              <td class="pr-4 py-3">模型固定，厂商决定</td>
+              <td class="text-on-surface py-3 font-medium">智能路由，自动选最优模型，成本可控</td>
+            </tr>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">企业安全</td>
+              <td class="pr-4 py-3">无内网访问能力，无审计日志</td>
+              <td class="text-on-surface py-3 font-medium">Zero-trust mesh，完整审计，敏感操作审批</td>
+            </tr>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">最优配置</td>
+              <td class="pr-4 py-3">prompt/tool 自己维护，随模型更新失效</td>
+              <td class="text-on-surface py-3 font-medium">Harness Engineering 驾驭，始终最优</td>
+            </tr>
+            <tr>
+              <td class="pr-4 font-medium text-on-surface-variant py-3">适合团队</td>
+              <td class="pr-4 py-3">个人使用，多人难以统一配置</td>
+              <td class="text-on-surface py-3 font-medium">团队共享，统一权限，统一审计</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Token API 详情 -->
+<section id="token" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-extrabold mb-4">Token API — 为工作流提供动力</h2>
+    <p class="text-on-surface-variant mb-12 max-w-2xl">当团队拥有自研 AI 工作流、需要直接调用大模型时，Token API 提供合规、可验证、智能路由的模型访问——也是 Lumii Agent 底层的燃料来源。</p>
+
+    <!-- Token 架构图 -->
+    <div class="bg-slate-800 rounded-2xl p-6 mb-12 overflow-x-auto">
+      <div class="flex gap-2 mb-6">
+        <div class="w-3 h-3 rounded-full bg-red-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-amber-500 flex-shrink-0"></div>
+        <div class="w-3 h-3 rounded-full bg-emerald-500 flex-shrink-0"></div>
+        <span class="text-slate-500 text-xs ml-1 font-mono">token-api-architecture</span>
+      </div>
+      <div class="min-w-[480px]">
+        <div class="flex justify-center">
+          <div class="border border-slate-400/70 bg-slate-600/50 rounded-lg px-4 py-2 text-center">
+            <div class="text-slate-300 text-xs font-mono font-bold">您的代码 / AI 工作流</div>
+          </div>
+        </div>
+        <div class="flex justify-center py-2">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-slate-600"></div>
+            <div class="text-slate-400 text-xs">▼</div>
+          </div>
+        </div>
+        <div class="border border-yellow-500/60 rounded-xl p-4 bg-yellow-800/30">
+          <div class="text-yellow-400 text-[10px] font-mono font-bold uppercase tracking-widest mb-3">Lumii Router</div>
+          <div class="grid grid-cols-3 gap-2 mb-3">
+            <div class="border border-yellow-500/50 bg-yellow-900/10 rounded-lg p-2 text-center">
+              <div class="text-yellow-300 text-[10px] font-mono font-bold mb-1">请求解析与路由</div>
+              <div class="text-slate-200 text-[10px] font-mono">model 参数<br/>自动匹配最优</div>
+            </div>
+            <div class="border border-yellow-500/50 bg-yellow-900/10 rounded-lg p-2 text-center">
+              <div class="text-yellow-300 text-[10px] font-mono font-bold mb-1">合规跨境 Gateway</div>
+              <div class="text-slate-200 text-[10px] font-mono">境内节点<br/>合规出境</div>
+            </div>
+            <div class="border border-yellow-500/50 bg-yellow-900/10 rounded-lg p-2 text-center">
+              <div class="text-yellow-300 text-[10px] font-mono font-bold mb-1">响应头验证注入</div>
+              <div class="text-slate-200 text-[10px] font-mono">model 字段<br/>可验证真实性</div>
+            </div>
+          </div>
+          <div class="bg-slate-600/60 rounded px-3 py-1.5 text-[10px] font-mono text-slate-300">
+            智能路由：按任务复杂度自动选模型，降本增效 50–70%
+          </div>
+        </div>
+        <div class="flex justify-center py-2">
+          <div class="flex flex-col items-center">
+            <div class="w-px h-4 bg-slate-600"></div>
+            <div class="text-slate-400 text-xs">▼</div>
+          </div>
+        </div>
+        <div class="grid grid-cols-2 gap-2">
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3">
+            <div class="text-slate-200 text-[10px] font-mono mb-1">高复杂任务</div>
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">Claude / GPT-4 等</div>
+            <div class="text-emerald-400 text-[10px] font-mono">官方 API 直连（满血版，可验证）</div>
+          </div>
+          <div class="border border-emerald-500/60 bg-emerald-800/40 rounded-lg p-3">
+            <div class="text-slate-200 text-[10px] font-mono mb-1">低复杂任务</div>
+            <div class="text-emerald-300 text-xs font-mono font-bold mb-1">轻量模型</div>
+            <div class="text-emerald-400 text-[10px] font-mono">官方 API 直连（成本优化）</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 mb-12">
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-primary text-2xl mb-3 block">verified</span>
+        <h4 class="font-bold mb-2">不掺假，可验证</h4>
+        <p class="text-sm text-on-surface-variant">直连官方 API，响应头 model 字段可验证。所用 Claude 3.5 即为官方原版，而非套壳或降智替代品。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-primary text-2xl mb-3 block">savings</span>
+        <h4 class="font-bold mb-2">智能路由降本</h4>
+        <p class="text-sm text-on-surface-variant">自动识别任务复杂度，简单任务用轻量模型，复杂任务才用旗舰模型，降本增效 50–70%。</p>
+      </div>
+      <div class="glass-card rounded-2xl p-6 kinetic-shadow">
+        <span class="material-symbols-outlined text-primary text-2xl mb-3 block">integration_instructions</span>
+        <h4 class="font-bold mb-2">一行代码接入</h4>
+        <p class="text-sm text-on-surface-variant">OpenAI-compatible 接口，只需替换 base_url 和 api_key，其他代码零改动，今天就能切换。</p>
+      </div>
+    </div>
+
+    <!-- Coding 场景引流 -->
+    <div class="bg-tertiary/5 border border-tertiary/20 rounded-2xl p-8 flex flex-col md:flex-row items-start gap-6">
+      <span class="material-symbols-outlined text-tertiary text-3xl flex-shrink-0">lightbulb</span>
+      <div>
+        <h4 class="font-bold mb-2">如果团队的主要需求是编程开发……</h4>
+        <p class="text-sm text-on-surface-variant mb-4">
+          部分团队购买 Token API 的初衷是为 coding 工具提供大模型接口，但这条路需要自行搭建工具链、维护 prompt 并处理安全隔离——
+          综合成本往往高于直接使用 Lumii Coding Agent。
+        </p>
+        <p class="text-sm text-on-surface-variant mb-4">
+          <strong class="text-on-surface">Lumii Coding Agent</strong> 已内置上述所有能力：最优模型 + 最优工具链 + Managed Dev Box + Zero-Trust 安全，
+          固定月费，省去全部自建成本。
+        </p>
+        <a href="#coding" class="inline-flex items-center gap-1 text-sm font-bold text-tertiary hover:underline">
+          查看 Lumii Coding Agent 详情 <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 为什么不直接买 Token：完整对比 -->
+<section id="compare" class="py-24 px-6 tonal-frosted">
+  <div class="max-w-5xl mx-auto">
+    <h2 class="text-3xl font-extrabold mb-4">Harness Engineering 工程卓越：Lumii vs. 自建方案</h2>
+    <p class="text-on-surface-variant mb-12 max-w-2xl">Harness Engineering 不是单点工具，是以 coding 场景为基准的完整工程体系——环境、技能、接口、安全、成本，逐维度全面优于自建方案。</p>
+
+    <div class="grid md:grid-cols-5 gap-0 overflow-hidden rounded-2xl border border-outline-variant/20">
+      <!-- 表头 -->
+      <div class="md:col-span-1 bg-surface-container-low p-4 font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 flex items-end">维度</div>
+      <div class="md:col-span-2 bg-surface-container-low p-4 font-bold text-xs uppercase tracking-widest text-on-surface-variant border-b border-outline-variant/20 flex items-end">自建方案（散装 Token / 个人订阅 / 自建 Agent）</div>
+      <div class="md:col-span-2 bg-tertiary/10 p-4 font-bold text-xs uppercase tracking-widest text-tertiary border-b border-outline-variant/20 flex items-end">Lumii Coding Agent</div>
+
+      <!-- 行 1 -->
+      <div class="md:col-span-1 bg-surface p-4 text-sm font-semibold border-b border-outline-variant/10">最优环境</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm text-on-surface-variant border-b border-outline-variant/10">本地环境或自选云端，环境不一致，维护成本高</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm border-b border-outline-variant/10 font-medium">标准化 Managed Dev Box，隔离沙箱，环境始终一致</div>
+
+      <!-- 行 2 -->
+      <div class="md:col-span-1 bg-surface-container-lowest p-4 text-sm font-semibold border-b border-outline-variant/10">最优技能</div>
+      <div class="md:col-span-2 bg-surface-container-lowest p-4 text-sm text-on-surface-variant border-b border-outline-variant/10">prompt / tool 需自行编写与维护，随模型版本迭代易失效</div>
+      <div class="md:col-span-2 bg-surface-container-lowest p-4 text-sm border-b border-outline-variant/10 font-medium">Harness Engineering 持续维护，始终跑最优配置</div>
+
+      <!-- 行 3 -->
+      <div class="md:col-span-1 bg-surface p-4 text-sm font-semibold border-b border-outline-variant/10">最优接口</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm text-on-surface-variant border-b border-outline-variant/10">模型固定或需手动切换，无统一接口</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm border-b border-outline-variant/10 font-medium">统一接口 + 智能路由，自动选最优模型</div>
+
+      <!-- 行 4 -->
+      <div class="md:col-span-1 bg-surface-container-lowest p-4 text-sm font-semibold border-b border-outline-variant/10">最优安全</div>
+      <div class="md:col-span-2 bg-surface-container-lowest p-4 text-sm text-on-surface-variant border-b border-outline-variant/10">安全架构需自行设计，内网访问需开放端口</div>
+      <div class="md:col-span-2 bg-surface-container-lowest p-4 text-sm border-b border-outline-variant/10 font-medium">Zero-trust mesh 开箱安全，零暴露，全审计</div>
+
+      <!-- 行 5 -->
+      <div class="md:col-span-1 bg-surface p-4 text-sm font-semibold">最优省钱路由</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm text-on-surface-variant">模型调用成本不可控，高价模型被全量调用</div>
+      <div class="md:col-span-2 bg-surface p-4 text-sm font-medium">智能路由降本增效 50–70%，固定月费便于预算管理</div>
+    </div>
+  </div>
+</section>
+
+<!-- 定价 -->
+<section id="pricing" class="py-24 px-6">
+  <div class="max-w-5xl mx-auto">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl font-extrabold mb-4">定价</h2>
+      <p class="text-on-surface-variant">透明定价，没有隐藏费用</p>
+    </div>
+    <div class="grid md:grid-cols-3 gap-6">
+      <!-- Token API -->
+      <div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col">
+        <h3 class="text-xl font-extrabold mb-2">Token API</h3>
+        <p class="text-on-surface-variant text-sm mb-6">自研工作流、直连模型</p>
+        <div class="text-3xl font-black text-primary mb-1">+3%</div>
+        <p class="text-xs text-on-surface-variant mb-8">按实际使用量</p>
+        <ul class="space-y-3 text-sm mb-8 flex-1">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check_circle</span>智能路由</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check_circle</span>OpenAI-compatible</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check_circle</span>响应头可验证</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-base">check_circle</span>合规架构</li>
+        </ul>
+        <button data-cta="get-started" class="w-full py-3 bg-primary text-white rounded-xl font-bold text-sm">开始使用</button>
+      </div>
+      <!-- Lumii Coding Agent -->
+      <div class="bg-white rounded-3xl p-8 shadow-2xl flex flex-col border-2 border-tertiary relative overflow-hidden">
+        <div class="absolute top-4 right-4">
+          <span class="bg-tertiary text-white text-[10px] font-bold px-2 py-1 rounded-full uppercase tracking-wider">推荐</span>
+        </div>
+        <div class="absolute top-0 right-0 w-40 h-40 bg-tertiary/5 rounded-full blur-[60px] pointer-events-none"></div>
+        <h3 class="text-xl font-extrabold mb-2">Lumii Coding Agent</h3>
+        <p class="text-on-surface-variant text-sm mb-6">托管开发箱，团队编程场景</p>
+        <div class="text-3xl font-black text-tertiary mb-1">¥2,999</div>
+        <p class="text-xs text-on-surface-variant mb-8">/ 月 / Agent</p>
+        <ul class="space-y-3 text-sm mb-8 flex-1">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span>Managed Remote Dev Box</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span>Best Practice 持续维护</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span>Zero-trust 内网访问</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span>完整审计日志</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-tertiary text-base">check_circle</span>智能路由，成本可控</li>
+        </ul>
+        <button data-cta="get-started" class="w-full py-3 bg-tertiary text-white rounded-xl font-bold text-sm hover:bg-tertiary/90 transition-colors">开始使用</button>
+      </div>
+      <!-- Full Lumii Agent -->
+      <div class="bg-white rounded-3xl p-8 shadow-xl flex flex-col">
+        <h3 class="text-xl font-extrabold mb-2">Lumii Agent</h3>
+        <p class="text-on-surface-variant text-sm mb-6">全场景 AI 员工，企业级</p>
+        <div class="text-3xl font-black text-on-surface mb-1">定制</div>
+        <p class="text-xs text-on-surface-variant mb-8">企业套餐享折扣，支持私有部署</p>
+        <ul class="space-y-3 text-sm mb-8 flex-1">
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-on-surface text-base">check_circle</span>Coding + 全场景 Agent</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-on-surface text-base">check_circle</span>飞书 / 企微 / 钉钉集成</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-on-surface text-base">check_circle</span>私有部署可选</li>
+          <li class="flex items-center gap-2"><span class="material-symbols-outlined text-on-surface text-base">check_circle</span>SLA + 专属支持</li>
+        </ul>
+        <button data-cta="demo-request" class="w-full py-3 border-2 border-on-surface text-on-surface rounded-xl font-bold text-sm hover:bg-surface-container-high transition-colors">预约演示</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="py-24 px-6 relative overflow-hidden">
+  <div class="absolute inset-0 bg-primary-container z-0"></div>
+  <div class="absolute top-0 right-0 w-96 h-96 bg-secondary-container/20 rounded-full blur-[100px] -translate-y-1/2 translate-x-1/2"></div>
+  <div class="absolute bottom-0 left-0 w-96 h-96 bg-tertiary/20 rounded-full blur-[100px] translate-y-1/2 -translate-x-1/2"></div>
+  <div class="max-w-4xl mx-auto text-center relative z-10">
+    <h2 class="text-4xl md:text-5xl font-black text-white mb-6 text-center">准备好了吗？</h2>
+    <p class="text-blue-100 text-lg mb-12 opacity-90 text-center">5 分钟接入，今天就能用上</p>
+    <div class="flex flex-col sm:flex-row justify-center gap-6">
+      <button data-cta="get-started" class="px-10 py-4 bg-white text-primary-container rounded-full font-bold shadow-xl hover:bg-slate-50 transition-colors">立即开始</button>
+      <button data-cta="demo-request" class="px-10 py-4 bg-primary-container border-2 border-white/30 text-white rounded-full font-bold hover:bg-white/10 transition-colors">预约演示</button>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-slate-50">
+  <div class="max-w-7xl mx-auto px-8 py-16">
+    <div class="grid md:grid-cols-4 gap-12">
+      <div class="md:col-span-1">
+        <div class="flex items-center gap-2.5 mb-3">
+          <img src="/assets/logo/mark-black.svg" alt="" class="h-7 w-auto" />
+          <span class="text-xl font-extrabold text-on-surface tracking-tight" style="letter-spacing:-0.03em">Lumii AI</span>
+        </div>
+        <p class="text-sm text-on-surface-variant mb-2">让您的团队用 AI 跑得更快</p>
+        <p class="text-xs text-slate-400">lumii-ai.cn</p>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-on-surface mb-4">产品</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="/products.html">Lumii Agent</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/products.html#coding">Lumii Coding Agent</a></li>
+          <li><a class="hover:text-primary transition-colors" href="/products.html#token">Token API</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">定价</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-on-surface mb-4">资源</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="#">文档</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">API 参考</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">博客</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-xs font-bold uppercase tracking-widest text-on-surface mb-4">公司</h4>
+        <ul class="space-y-2 text-sm text-on-surface-variant">
+          <li><a class="hover:text-primary transition-colors" href="#">关于我们</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">联系我们</a></li>
+          <li><a class="hover:text-primary transition-colors" href="#">加入我们</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="mt-12 pt-8 border-t border-outline-variant/20 text-center text-xs text-slate-400">
+      © 2026 Lumii AI. All rights reserved. | ICP备案号：待填写
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>

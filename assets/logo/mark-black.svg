@@ -1,5 +1,4 @@
-<svg width="132" height="131" viewBox="0 0 132 131" fill="none" xmlns="http://www.w3.org/2000/svg">
-<rect width="30" height="131" fill="black"/>
-<rect x="1" y="131" width="30" height="131" transform="rotate(-90 1 131)" fill="black"/>
-<circle cx="112" cy="20" r="20" fill="black"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <path d="M14 0H18Q25 0 25 7V71Q25 78 32 78H89Q96 78 96 85V89Q96 96 89 96H14Q7 96 7 89V7Q7 0 14 0Z" fill="#191c1e"/>
+  <circle cx="64" cy="17" r="12" fill="#191c1e"/>
 </svg>
