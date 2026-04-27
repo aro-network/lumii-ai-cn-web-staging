@@ -613,28 +613,40 @@
   </div>
 </footer>
 
+<div id="toast-overlay" onclick="hideComingSoon()" style="
+  position:fixed; inset:0; z-index:99;
+  background:rgba(0,0,0,0.25); backdrop-filter:blur(4px);
+  opacity:0; pointer-events:none;
+  transition:opacity 0.3s;
+"></div>
 <div id="toast-coming-soon" style="
-  position:fixed; bottom:2rem; left:50%; transform:translateX(-50%) translateY(20px);
+  position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) scale(0.92);
   opacity:0; pointer-events:none; z-index:100;
-  background:rgba(255,255,255,0.92); backdrop-filter:blur(16px);
-  border-radius:1rem; padding:1rem 1.5rem;
-  box-shadow:0 8px 32px rgba(0,82,204,0.12);
-  display:flex; align-items:center; gap:0.75rem;
+  background:rgba(255,255,255,0.95); backdrop-filter:blur(20px);
+  border-radius:1.25rem; padding:2rem 2.5rem;
+  box-shadow:0 16px 48px rgba(0,82,204,0.18);
+  display:flex; flex-direction:column; align-items:center; gap:0.75rem;
   transition:opacity 0.3s, transform 0.3s;
   font-family:Manrope,system-ui,sans-serif;
 ">
-  <span class="material-symbols-outlined" style="color:#0052CC;font-size:22px">rocket_launch</span>
-  <span style="font-size:14px;font-weight:600;color:#191C1E">即将上线，敬请期待</span>
+  <span class="material-symbols-outlined" style="color:#0052CC;font-size:36px">rocket_launch</span>
+  <span style="font-size:17px;font-weight:700;color:#191C1E">即将上线，敬请期待</span>
+  <span style="font-size:13px;color:#434654">我们正在全力开发中，很快就会与您见面</span>
 </div>
 <script>
   var _toastTimer;
   function showComingSoon(){
-    var t=document.getElementById('toast-coming-soon');
+    var o=document.getElementById('toast-overlay'),t=document.getElementById('toast-coming-soon');
     clearTimeout(_toastTimer);
-    t.style.opacity='1';t.style.transform='translateX(-50%) translateY(0)';t.style.pointerEvents='auto';
-    _toastTimer=setTimeout(function(){
-      t.style.opacity='0';t.style.transform='translateX(-50%) translateY(20px)';t.style.pointerEvents='none';
-    },2500);
+    o.style.opacity='1';o.style.pointerEvents='auto';
+    t.style.opacity='1';t.style.transform='translate(-50%,-50%) scale(1)';t.style.pointerEvents='auto';
+    _toastTimer=setTimeout(hideComingSoon,3000);
+  }
+  function hideComingSoon(){
+    var o=document.getElementById('toast-overlay'),t=document.getElementById('toast-coming-soon');
+    clearTimeout(_toastTimer);
+    o.style.opacity='0';o.style.pointerEvents='none';
+    t.style.opacity='0';t.style.transform='translate(-50%,-50%) scale(0.92)';t.style.pointerEvents='none';
   }
 </script>
 </body>
